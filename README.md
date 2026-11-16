@@ -2,6 +2,7 @@
 
 Predict which employees are likely to leave, and explain why, with XGBoost, SHAP and a small Streamlit dashboard.
 
+[![CI](https://github.com/DanielYamanoglu/employee-turnover-prediction/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielYamanoglu/employee-turnover-prediction/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![XGBoost](https://img.shields.io/badge/XGBoost-3.4-orange)
