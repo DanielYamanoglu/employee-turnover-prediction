@@ -43,7 +43,8 @@ def confusion(cm: dict, path):
 
 def shap_summary(values, X, path):
     plt.figure()
-    shap.summary_plot(values, X, max_display=15, show=False)
+    # Seeded so the beeswarm jitter, and therefore the committed figure, is reproducible.
+    shap.summary_plot(values, X, max_display=15, show=False, rng=np.random.default_rng(0))
     fig = plt.gcf()
     fig.suptitle("SHAP summary (held-out)", y=1.0)
     _save(fig, path)

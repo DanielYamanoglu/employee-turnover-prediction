@@ -40,6 +40,8 @@ Overtime, stock option level, number of previous employers, age, commute distanc
 
 ## Quickstart
 
+On macOS, XGBoost needs the OpenMP runtime first: `brew install libomp`. Without it, training and the tests fail at import.
+
 ```bash
 uv venv --python 3.12 .venv
 uv pip install -p .venv -r requirements.txt
@@ -53,8 +55,6 @@ make dashboard        # Streamlit app on http://localhost:8501
 PYTHONPATH=src .venv/bin/python -m turnover.predict \
   --employee-json '{"Age": 27, "OverTime": "Yes", "MonthlyIncome": 2300, "JobLevel": 1, "StockOptionLevel": 0}'
 ```
-
-macOS: XGBoost needs the OpenMP runtime (`brew install libomp`).
 
 The predict command prints the probability, a risk band (low < 0.25 <= medium < 0.5 <= high) and the top SHAP drivers for that employee as JSON.
 
@@ -90,8 +90,8 @@ assets/           pipeline diagram
 - Calibrate probabilities and report calibration curves.
 - Compare against a logistic regression baseline and a leakage-free time-based split on data that has timestamps.
 - Review fairness across gender, age and marital status before any real-world use. Predicting individual attrition has real ethical risks and should drive support, not penalties.
-- Package the dashboard for deployment and add CI.
+- Package the dashboard for deployment.
 
 ## Data and licence
 
-Data: the IBM HR Analytics Employee Attrition & Performance sample dataset, a fictional dataset created by IBM data scientists and widely distributed (for example on Kaggle). The copy in `data/` was downloaded from https://raw.githubusercontent.com/nelson-wu/employee-attrition-ml/master/WA_Fn-UseC_-HR-Employee-Attrition.csv (the file only had a BOM and CRLF line endings stripped). It is third-party data; I have not found an explicit licence in the file itself, so check the original source's terms before reusing it. Code is released under the MIT licence (see `LICENSE`).
+Data: the IBM HR Analytics Employee Attrition & Performance sample dataset, a fictional dataset created by IBM data scientists and widely distributed; its usual home is the [Kaggle dataset page](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset), where the current licence terms are listed. The copy in `data/` was downloaded from https://raw.githubusercontent.com/nelson-wu/employee-attrition-ml/master/WA_Fn-UseC_-HR-Employee-Attrition.csv (the file only had a BOM and CRLF line endings stripped). It is third-party data; I have not found an explicit licence in the file itself, so check the original source's terms before reusing it. Code is released under the MIT licence (see `LICENSE`).
